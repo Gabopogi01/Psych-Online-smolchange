@@ -4538,7 +4538,7 @@ class PlayState extends MusicBeatState
 					CustomFadeTransition.nextCamera = null;
 				}
 				FreeplayState.gainedPoints = gainedPoints;
-				FlxG.switchState(() -> new online.states.ResultsSoloState({
+				/*FlxG.switchState(() -> new online.states.ResultsSoloState({
 					hitNotes: songHits,
 					combo: maxCombo,
 					sicks: songSicks,
@@ -4554,7 +4554,12 @@ class PlayState extends MusicBeatState
 					character: playsAsBF() ? boyfriend.resultsName ?? boyfriend.curCharacter : dad.resultsName ?? dad.curCharacter,
 					points: songPoints,
 					mania: maniaModifier
-				}));
+				}));*/
+				if (isStoryMode) {
+					MusicBeatState.switchState(new StoryMenuState());
+				} else {
+					MusicBeatState.switchState(new FreeplayState());
+				}
 				changedDifficulty = false;
 			}
 			transitioning = true;
