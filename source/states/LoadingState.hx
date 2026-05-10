@@ -45,7 +45,7 @@ class LoadingState extends MusicBeatState
 		var bg:FlxSprite = new FlxSprite(0, 0).makeGraphic(FlxG.width, FlxG.height, 0xffcaff4d);
 		bg.antialiasing = ClientPrefs.data.antialiasing;
 		add(bg);
-		var myText:FlxText = new FlxText(0, 0, 0, "rendering...", 32);
+		var myText:FlxText = new FlxText(0, 0, 0, "Hello World", 32);
 		myText.screenCenter();
 		add(myText);
 		funkay.antialiasing = ClientPrefs.data.antialiasing;

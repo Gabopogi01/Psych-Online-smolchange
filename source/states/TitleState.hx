@@ -177,7 +177,7 @@ class TitleState extends MusicBeatState
 		if (!initialized)
 		{
 			if(FlxG.sound.music == null) {
-				//why bro
+				states.TitleState.playFreakyMusic(0);
 			}
 		}
 
@@ -494,6 +494,7 @@ class TitleState extends MusicBeatState
 
 		if (controls.RESET) {
 			FlxG.sound.music.stop();
+			playFreakyMusic();
 		}
 
 		if(swagShader != null)
@@ -581,6 +582,7 @@ class TitleState extends MusicBeatState
 			{
 				case 1:
 					//FlxG.sound.music.stop();
+					states.TitleState.playFreakyMusic(0);
 					FlxG.sound.music.fadeIn(4, 0, 0.7);
 				case 2:
 					#if PSYCH_WATERMARKS
@@ -674,6 +676,7 @@ class TitleState extends MusicBeatState
 						skippedIntro = true;
 						playJingle = false;
 
+						states.TitleState.playFreakyMusic(0);
 						FlxG.sound.music.fadeIn(4, 0, 0.7);
 						return;
 				}
@@ -695,6 +698,7 @@ class TitleState extends MusicBeatState
 					remove(credGroup);
 					FlxG.camera.flash(FlxColor.WHITE, 3);
 					sound.onComplete = function() {
+						states.TitleState.playFreakyMusic(0);
 						FlxG.sound.music.fadeIn(4, 0, 0.7);
 						transitioning = false;
 					};
@@ -728,6 +732,9 @@ class TitleState extends MusicBeatState
 	static var lastFreakyMusic:openfl.media.Sound = null;
 	public static var lastSong:TrackSong = null;
 	public static function playFreakyMusic(?volume:Float = 0.7, ?daSong:TrackSong) {
+		if (FlxG.sound.music != null && FlxG.sound.music.playing && lastFreakyMusic == @:privateAccess FlxG.sound.music._sound)
+			return;
+
 		if (FlxG.sound.music != null)
 			FlxG.sound.music.stop();
 
@@ -788,6 +795,7 @@ class TitleState extends MusicBeatState
 		WeekData.setDirectoryFromWeek();
 
 		if (FlxG.sound.music == null || !FlxG.sound.music.playing) {
+			FlxG.sound.playMusic(Paths.music('freakyMenu'), volume);
 			lastFreakyMusic = @:privateAccess FlxG.sound.music._sound;
 		}
 	}
