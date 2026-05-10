@@ -1739,7 +1739,7 @@ class FreeplayState extends MusicBeatState
 			return;
 
 		if (musName == 'freakyMenu')
-			TitleState.playFreakyMusic(0, TitleState.lastSong);
+			trace("no")
 		else {
 			FlxG.sound.playMusic(Paths.music(musName), 0);
 			Conductor.bpm = bpm;

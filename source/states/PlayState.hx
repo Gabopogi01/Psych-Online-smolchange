@@ -4382,7 +4382,7 @@ class PlayState extends MusicBeatState
 		}
 	}
 
-	public var skipResults = false;
+	public var skipResults = true;
 
 	public var transitioning = false;
 	var canEndSongOnline:Bool = false;
